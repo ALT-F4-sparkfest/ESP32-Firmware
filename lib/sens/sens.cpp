@@ -11,11 +11,11 @@ void initSens() {
 
 void updateSensStatus() {
     if (digitalRead(SEN_PIN) == HIGH) {
-        lastSensTime = millis();
+        lastSensTime = millis(); // update the last time the vibration sensor was triggered
     }
-    jeepStatus = (millis() - lastSensTime) < SENS_TIMEOUT;
+    jeepStatus = (millis() - lastSensTime) < SENS_TIMEOUT; // tells the elapsed time since the last vibration was detected, if it is less than the timeout then the jeep is running
 }
 
 bool getJeepStatus() {
-    return jeepStatus;
+    return jeepStatus; // returns the current status of the jeep, true if it is running, false if it is not
 }
