@@ -1,5 +1,7 @@
 #include <Arduino.h>
 #include "sens.h"
+#include "gps.h"
+#include "mqtt.h"
 
 const char* ssid = ""; // WIFI Name
 const char* password = ""; // WIFI Password
