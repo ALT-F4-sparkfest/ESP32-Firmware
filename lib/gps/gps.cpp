@@ -1,4 +1,4 @@
-#include "gps_module.h"
+#include "gps.h"
 
 TinyGPSPlus gps;
 HardwareSerial GPS_Serial(2); // UART2 (Pins 16 RX, 17 TX)
