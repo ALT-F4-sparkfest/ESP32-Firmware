@@ -2,7 +2,7 @@
 #include <PubSubClient.h>
 #include "mqtt.h"
 
-WifiClient espClient;
+WiFiClient espClient;
 PubSubClient client(espClient);
 
 void initMQTT(const char* ssid, const char* password, const char* mqtt_server) { 
