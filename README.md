@@ -132,13 +132,6 @@ void maintainNetwork();
 void publishTelemetry(const char* topic, String payload);
 ```
 
-**Behavior**
-- `initMQTT()` connects to a given Wi-Fi SSID/password and sets the MQTT broker host on **port 1883** (the standard unencrypted MQTT port).
-- `maintainNetwork()` is a blocking reconnect loop: while the `PubSubClient` is disconnected, it repeatedly attempts to connect using a randomized client ID of the form `SmartRoute-<hex>`, retrying every 5 seconds. Once connected it calls `client.loop()` to service the MQTT session.
-- `publishTelemetry()` publishes a string payload to an arbitrary topic and logs it to the serial console.
-
-> **⚠️ Integration note:** `initMQTT()` is the only place in the codebase that calls `client.setServer(...)` to configure the MQTT broker address, but `main.cpp` never calls `initMQTT()` — Wi-Fi connection was migrated to `WiFiManager`, and the broker configuration step appears to have been left out of that migration. As shipped, `maintainNetwork()` will attempt to connect to an MQTT broker that was never assigned a host/port, so telemetry publishing will not reach a broker until either `client.setServer()` is called elsewhere (e.g., after `wm.autoConnect()`, ideally using another `WiFiManagerParameter` for the broker address) or `initMQTT()`'s Wi-Fi logic is removed in favor of just setting the server.
-
 ### 5.4 `lib/sens` — Motion Detection
 
 **`sens.h`**
